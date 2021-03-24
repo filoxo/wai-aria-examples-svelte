@@ -1,11 +1,5 @@
-<script>
-</script>
-
-<main />
-
-<style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-</style>
+<p>
+  Reimplementing <a href="https://www.w3.org/TR/wai-aria-practices/examples/"
+    >ARIA examples</a
+  > using Svelte, just for learning.
+</p>
