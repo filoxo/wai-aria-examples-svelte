@@ -1,6 +1,9 @@
 <div id="container">
   <nav>
     <a href="/">Home</a>
+    <div>
+      <a href="/examples/alert">Alert</a>
+    </div>
   </nav>
   <main>
     <slot />
