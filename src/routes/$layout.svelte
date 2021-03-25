@@ -1,9 +1,8 @@
 <div id="container">
   <nav>
-    <a href="/">Home</a>
-    <div>
-      <a href="/examples/alert">Alert</a>
-    </div>
+    <a href="/" id="home-link">Home</a>
+    <a href="/examples/alert">Alert</a>
+    <a href="/examples/alert-dialog">Alert Dialog</a>
   </nav>
   <main>
     <slot />
@@ -20,8 +19,14 @@
   }
 
   #container nav {
-    width: 10rem;
+    display: flex;
+    flex-direction: column;
     min-width: 5rem;
+    width: 10rem;
+  }
+
+  #home-link {
+    margin-bottom: 1rem;
   }
 
   #container main {
