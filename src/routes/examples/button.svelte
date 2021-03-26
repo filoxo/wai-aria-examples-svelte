@@ -21,12 +21,12 @@
   Mute
   <svelte:fragment slot="pressed-false">
     <svg>
-      <use xlink:href="/static/mute.svg#icon-sound" />
+      <use xlink:href="/images/mute.svg#icon-sound" />
     </svg>
   </svelte:fragment>
   <svelte:fragment slot="pressed-true">
     <svg>
-      <use xlink:href="/static/mute.svg#icon-mute" />
+      <use xlink:href="/images/mute.svg#icon-mute" />
     </svg>
   </svelte:fragment>
 </ButtonAnchor>
