@@ -60,5 +60,14 @@
         >sveltejs/svelte#6097</a
       >.
     </li>
+    <li>
+      I think I would have preferred to have a single Button element that would
+      allow for rendering a dynamic element type (see
+      <a href="https://github.com/sveltejs/svelte/issues/2324"
+        >sveltejs/svelte#2324</a
+      >), but that would lean more towards an implementation for a design system
+      rather than an example implementation which is the focus of the ARIA
+      authoring practices.
+    </li>
   </ul>
 </section>
