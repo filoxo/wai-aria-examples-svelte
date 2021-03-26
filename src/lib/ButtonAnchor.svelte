@@ -1,10 +1,25 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+  import { handleKeyboardClick } from './keyboard-utils';
+
   if ($$props['aria-pressed'] === undefined || $$props['aria-pressed'] === null)
     throw new Error('ButtonAnchor: aria-pressed is required!');
+
+  const dispatch = createEventDispatcher();
+
+  function onClick(e) {
+    dispatch('click');
+  }
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
-<a tabindex="0" role="button" on:click {...$$props}>
+<a
+  tabindex="0"
+  role="button"
+  {...$$props}
+  on:click={onClick}
+  on:keydown={handleKeyboardClick(onClick)}
+>
   <slot />
   {#if $$props['aria-pressed']}
     <slot name="pressed-true" />
