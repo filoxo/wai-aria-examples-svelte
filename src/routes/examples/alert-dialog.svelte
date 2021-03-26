@@ -154,6 +154,19 @@
         ><code>key</code></a
       > instead.
     </li>
+    <li>
+      Svelte has a really cool <a href="https://svelte.dev/tutorial/svelte-body"
+        ><code>&lt;svelte:body /&gt;</code>
+        component</a
+      >
+      that I thought would make it easy to apply a class conditionally through
+      <a href="https://svelte.dev/tutorial/classes">a class directive</a>, eg
+      <code>&lt;svelte:body class:has-dialog=&lcub;true&rcub; /&gt;</code>, but
+      that is not yet currently supported. See
+      <a href="https://github.com/sveltejs/svelte/issues/3105"
+        >sveltejs/svelte#3105 on GitHub</a
+      > for more info.
+    </li>
   </ul>
 </section>
 

@@ -50,8 +50,15 @@
       Coming from React experience, I found it interesting that I could not
       access the parent's on:click handler like normal props. I instead create a <a
         href="https://svelte.dev/tutorial/component-events">Component event</a
-      >that handles both click and keyboard click, and the parent handles a
-      single click event.
+      > that handles both click and keyboard click, and the parent handles a single
+      click event.
+    </li>
+    <li>
+      <code>&lt;svelte:fragment /&gt;</code> is new as of Mar 2021, and the
+      documentation can be found at
+      <a href="https://github.com/sveltejs/svelte/pull/6097/files"
+        >sveltejs/svelte#6097</a
+      >.
     </li>
   </ul>
 </section>
