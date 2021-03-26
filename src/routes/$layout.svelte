@@ -3,6 +3,7 @@
     <a href="/" id="home-link">Home</a>
     <a href="/examples/alert">Alert</a>
     <a href="/examples/alert-dialog">Alert Dialog</a>
+    <a href="/examples/button">Button</a>
   </nav>
   <main>
     <slot />
