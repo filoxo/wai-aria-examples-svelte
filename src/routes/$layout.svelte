@@ -2,6 +2,7 @@
   <nav>
     <a href="/" id="home-link">Home</a>
     <a href="/examples/alert">Alert</a>
+    <a href="/examples/article">Article</a>
     <a href="/examples/alert-dialog">Alert Dialog</a>
     <a href="/examples/button">Button</a>
   </nav>
@@ -11,6 +12,10 @@
 </div>
 
 <style>
+  :global(body) {
+    background: #fafafa;
+    font-family: Helvetica, Arial, sans-serif;
+  }
   #container {
     display: flex;
   }
