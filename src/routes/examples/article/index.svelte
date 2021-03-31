@@ -128,7 +128,11 @@
   <section id="main-content">
     <Feed id="restaurant-feed">
       {#each feedItems as item, i}
-        <RestaurantArticle {...item} index={i + 1} />
+        <RestaurantArticle
+          {...item}
+          aria-posinset={i + 1}
+          aria-setsize={feedItems.length}
+        />
       {/each}
     </Feed>
   </section>
