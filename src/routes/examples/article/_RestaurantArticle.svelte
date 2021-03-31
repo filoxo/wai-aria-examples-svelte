@@ -1,31 +1,31 @@
 <script>
-  import Article from '$lib/Article.svelte';
-  import { requires } from '$lib/helper-utils';
+  import Article from '$lib/Article.svelte'
+  import { requires } from '$lib/helper-utils'
 
-  export let index;
-  export let image;
-  export let name;
-  export let rating;
-  export let type;
-  export let street;
-  export let citystate;
-  export let phone;
+  export let image
+  export let name
+  export let rating
+  export let type
+  export let street
+  export let citystate
+  export let phone
 
-  requires(index, 'RestaurantArticle: index is required!');
-  requires(name, 'RestaurantArticle: name is required!');
+  requires(name, 'RestaurantArticle: name is required!')
+
+  const index = $$props['aria-posinset']
 
   let describedbyIDs = Object.values({
     rating: !rating ? '' : `restaurant-rating-${index}`,
     type: !type ? '' : `restaurant-type-${index}`,
     location: `restaurant-location-${index}`,
-  }).join(' ');
+  }).join(' ')
 </script>
 
 <Article
   class="restaurant-item"
-  aria-posinset={index}
   aria-labelledby={`restaurant-name-${index}`}
   aria-describedby={describedbyIDs}
+  {...$$props}
 >
   <div class="restaurant-details">
     {#if image}<div class="restaurant-image">{image}</div>{/if}
