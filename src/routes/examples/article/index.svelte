@@ -118,7 +118,6 @@
     if (loading || !feedItems || !feedItems.length) return
     loading = true
     clearTimeout(timeout)
-    console.log('delayinng for', delay)
     timeout = setTimeout(() => {
       loading = false
       feedItems = feedItems.concat(getRandomRestaurantData())

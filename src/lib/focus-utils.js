@@ -97,7 +97,6 @@ export function focusPreviousElement(elem = document.activeElement) {
 
 export function focusNextElement(elem = document.activeElement) {
   const nextElem = nextFocusableElement(elem)
-  console.log('nextElem', nextElem)
   attemptFocus(nextElem)
 }
 
