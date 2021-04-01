@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from 'svelte'
   import { requires } from './helper-utils'
   import { KeyCode } from './keyboard-utils'
   import {
@@ -12,6 +13,8 @@
   requires(id, 'Feed: id is required!')
 
   let feed
+
+  const dispatch = createEventDispatcher()
 
   function mapKeyShortcut(event) {
     if (!event.target.matches('[role="article"]')) return
@@ -41,8 +44,23 @@
       }
     }
   }
+
+  function handleScroll() {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight#determine_if_an_element_has_been_totally_scrolled
+    const isScrolledToBottom =
+      feed.scrollHeight - Math.abs(feed.scrollTop) === feed.clientHeight
+    if (isScrolledToBottom) {
+      dispatch('scroll-bottom')
+    }
+  }
 </script>
 
-<div {id} role="feed" bind:this={feed} on:keydown={mapKeyShortcut}>
+<div
+  {...$$props}
+  role="feed"
+  bind:this={feed}
+  on:keydown={mapKeyShortcut}
+  on:scroll={handleScroll}
+>
   <slot />
 </div>

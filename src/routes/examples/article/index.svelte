@@ -1,7 +1,7 @@
 <script>
-  import { onDestroy, onMount } from 'svelte';
-  import Feed from '../../../lib/Feed.svelte';
-  import RestaurantArticle from './_RestaurantArticle.svelte';
+  import Feed from '../../../lib/Feed.svelte'
+  import RestaurantArticle from './_RestaurantArticle.svelte'
+  import { onMount } from 'svelte'
 
   const RestaurantData = [
     {
@@ -94,31 +94,44 @@
       phone: '(111) 111-1111',
       image: '',
     },
-  ];
+  ]
 
-  let interval;
-  $: delay = 4000;
-  $: feedItems = [];
+  const getRandomRestaurantData = () =>
+    RestaurantData
+      // clone objects
+      .map((d) => ({ ...d }))
+      // pseudo randomize
+      .sort(() => Math.random() - 0.5)
 
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#getting_a_random_integer_between_two_values
-  function getRandomIndex(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-  }
+  let lastChecked = Date.now()
+  let timeout
+
+  $: delay = 200
+  $: feedItems = []
+  $: loading = false
 
   onMount(() => {
-    interval = setInterval(() => {
-      if (feedItems.length > 50) return;
-      const newItemIndex = getRandomIndex(0, RestaurantData.length);
-      const newItem = RestaurantData[newItemIndex];
-      feedItems = [...feedItems, newItem];
-    }, delay);
-  });
+    feedItems = getRandomRestaurantData()
+  })
 
-  onDestroy(() => {
-    clearInterval(interval);
-  });
+  function loadMore() {
+    if (loading || !feedItems || !feedItems.length) return
+    loading = true
+    clearTimeout(timeout)
+    console.log('delayinng for', delay)
+    timeout = setTimeout(() => {
+      loading = false
+      feedItems = feedItems.concat(getRandomRestaurantData())
+    }, delay)
+  }
+
+  function checkLoadMore() {
+    const now = Date.now()
+    if (lastChecked + 100 - now < 0) {
+      loadMore()
+      lastChecked = now
+    }
+  }
 </script>
 
 <h1>Article (Feed)</h1>
@@ -126,7 +139,11 @@
 <div>
   <h2>Recommended Restaurants</h2>
   <section id="main-content">
-    <Feed id="restaurant-feed">
+    <Feed
+      id="restaurant-feed"
+      on:scroll-bottom={checkLoadMore}
+      aria-busy={loading ? 'true' : null}
+    >
       {#each feedItems as item, i}
         <RestaurantArticle
           {...item}
@@ -143,11 +160,11 @@
       name="delay_time"
       bind:value={delay}
       on:input={(e) => {
-        delay = parseInt(e.target.value, 10);
+        delay = parseInt(e.target.value, 10)
       }}
     >
-      <option value="2000">2s</option>
-      <option value="4000">4s</option>
+      <option value="200">200 ms</option>
+      <option value="400">400 ms</option>
     </select>
   </section>
 </div>
@@ -167,6 +184,10 @@
   <h2>Lessons learned:</h2>
   <ul>
     <li>
+      The original example was implemented as an 'infinite feed' which does not
+      lend itself well to highlighting
+    </li>
+    <li>
       This example used <a
         href="https://developer.mozilla.org/en-US/docs/Web/API/Element/matches"
         >Element.matches</a
@@ -175,7 +196,42 @@
     </li>
     <li>
       Rendering of the article elements should leverage a <code>template</code> element
-      instead of having everything strewn throughout the JavaScript.
+      instead of having everything embedded as strings in JS.
+    </li>
+    <li>
+      Coming from React experience, I expected there to be a way to get a ref to
+      the rendered children but that seems to be an edge case that isn't fully
+      supported at the moment. See also <a
+        href="https://github.com/sveltejs/svelte/issues/4869"
+        >sveltejs/svelte#4869</a
+      >.
+    </li>
+    <li>
+      I learned that styles passed down to a component are not preserved (since
+      the component may or may not use them?). So they must be made <code
+        >:global</code
+      >
+      which I'm not a fan of, but there is a corresponding proposal at
+      <a href="https://github.com/sveltejs/rfcs/pull/13">sveltejs/rfcs#13</a> that
+      is interesting.
+    </li>
+    <li>
+      The example maintained an index cursor of the currently selected article.
+      I instead opted for using document.activeElement and other DOM APIs for
+      managing the focus.
+    </li>
+    <li>
+      The requirements state:
+      <blockquote>
+        <kbd>Control</kbd> + <kbd>Home</kbd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Move
+        focus to the first focusable element before the feed.
+      </blockquote>
+      but instead<a
+        href="https://github.com/w3c/aria-practices/blob/main/examples/feed/js/feed.js#L74"
+        >focus is being manually set to the<em>first item in the feed</em></a
+      >, presumably because there are no focusable elements before the feed.
+      Even so, focusing on the first item seems incorrect and should instead
+      simply not move focus at all.
     </li>
   </ul>
 </section>
@@ -203,7 +259,10 @@
   }
 
   :global(#restaurant-feed) {
+    max-height: 50vh;
     max-width: 100%;
+    overflow-y: auto;
+    padding: 1rem;
     width: 500px;
   }
 
