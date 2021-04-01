@@ -230,7 +230,7 @@
         <kbd>Control</kbd> + <kbd>Home</kbd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Move
         focus to the first focusable element before the feed.
       </blockquote>
-      but instead<a
+      but instead&nbsp;<a
         href="https://github.com/w3c/aria-practices/blob/main/examples/feed/js/feed.js#L74"
         >focus is being manually set to the<em>first item in the feed</em></a
       >, presumably because there are no focusable elements before the feed.
