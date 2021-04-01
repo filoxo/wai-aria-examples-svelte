@@ -184,7 +184,8 @@
   <ul>
     <li>
       The original example was implemented as an 'infinite feed' which does not
-      lend itself well to highlighting
+      seem to lend itself well because it interwove many aspects of dataloading
+      into the plugin. The 'plugin' itself could have been more generic.
     </li>
     <li>
       This example used <a
@@ -194,7 +195,10 @@
       this browser API is practically universal now, so I've omitted it.
     </li>
     <li>
-      Rendering of the article elements should leverage a <code>template</code> element
+      Rendering of the article elements could leverage a <a
+        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"
+        ><code>template</code> element</a
+      >
       instead of having everything embedded as strings in JS.
     </li>
     <li>
@@ -203,11 +207,12 @@
       supported at the moment. See also <a
         href="https://github.com/sveltejs/svelte/issues/4869"
         >sveltejs/svelte#4869</a
-      >.
+      >. Instead, this uses native DOM methods for identifying focusable
+      elements.
     </li>
     <li>
       I learned that styles passed down to a component are not preserved (since
-      the component may or may not use them?). So they must be made <code
+      the component may or may not use them? so they must be made <code
         >:global</code
       >
       which I'm not a fan of, but there is a corresponding proposal at
@@ -229,8 +234,15 @@
         href="https://github.com/w3c/aria-practices/blob/main/examples/feed/js/feed.js#L74"
         >focus is being manually set to the<em>first item in the feed</em></a
       >, presumably because there are no focusable elements before the feed.
-      Even so, focusing on the first item seems incorrect and should instead
-      simply not move focus at all.
+      Even so, focusing on the first item seems incorrect and could instead
+      simply not move focus at all. My implementation attempts to find the first
+      focusable element before and after the feed, and doesn't do anything if no
+      such element is found.
+    </li>
+    <li>
+      Another difference I chose to implement was that the list of restaurants
+      was always the same. I added some pseudo-randomness to the generation of
+      restaurant items.
     </li>
   </ul>
 </section>
