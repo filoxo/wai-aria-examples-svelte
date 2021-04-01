@@ -27,8 +27,8 @@
   #container nav {
     display: flex;
     flex-direction: column;
-    min-width: 5rem;
-    width: 10rem;
+    max-width: 10rem;
+    min-width: 10rem;
   }
 
   #home-link {
