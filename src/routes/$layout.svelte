@@ -5,6 +5,7 @@
     <a href="/examples/article">Article</a>
     <a href="/examples/alert-dialog">Alert Dialog</a>
     <a href="/examples/button">Button</a>
+    <a href="/examples/checkbox-two-state">Checkbox (two state)</a>
   </nav>
   <main>
     <slot />
