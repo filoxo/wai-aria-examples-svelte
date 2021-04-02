@@ -1,11 +1,11 @@
-export const KeyCode = {
+export const KeyCode = Object.freeze({
   ENTER: 'Enter',
   SPACE: ' ',
   PAGE_UP: 'PageUp',
   PAGE_DOWN: 'PageDown',
   HOME: 'Home',
   END: 'End',
-}
+})
 
 export const handleKeyboardClick = (fn) => {
   return (e) => {
