@@ -7,6 +7,7 @@
     <a href="/examples/button">Button</a>
     <a href="/examples/checkbox-two-state">Checkbox (two state)</a>
     <a href="/examples/checkbox-mixed-state">Checkbox (mixed state)</a>
+    <a href="/examples/table">Table</a>
   </nav>
   <main>
     <slot />
