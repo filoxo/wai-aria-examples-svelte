@@ -6,6 +6,7 @@
     <a href="/examples/alert-dialog">Alert Dialog</a>
     <a href="/examples/button">Button</a>
     <a href="/examples/checkbox-two-state">Checkbox (two state)</a>
+    <a href="/examples/checkbox-mixed-state">Checkbox (mixed state)</a>
   </nav>
   <main>
     <slot />
