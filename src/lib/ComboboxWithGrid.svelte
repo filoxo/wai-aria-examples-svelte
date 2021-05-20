@@ -1,7 +1,7 @@
 <script>
   import { requires, prevIndex, nextIndex } from '$lib/helper-utils'
   import { KeyCode } from '$lib/keyboard-utils'
-  import { afterUpdate, createEventDispatcher, setContext } from 'svelte'
+  import { afterUpdate, createEventDispatcher, setContext, tick } from 'svelte'
   import { writable } from 'svelte/store'
 
   export let id
@@ -87,15 +87,19 @@
     }
   }
 
-  function handleGridClick(e) {
-    if (e.target.matches('[role="row"]')) {
-      const row = e.target
-      $activeDescendant = row.id
+  async function handleGridClick(e) {
+    let target = e.target
+    if (target.matches('[role="gridcell"]'))
+      target = target.closest('[role="row"]')
+
+    if (target.matches('[role="row"]')) {
+      $activeDescendant = target.id
       // Sets the textbox value to the content of the first cell in the row containing focus.
-      value = row.querySelector('[role="gridcell"]').textContent
+      value = target.querySelector('[role="gridcell"]').textContent
       // Sets focus on the textbox.
       inputRef.focus()
       // Closes the grid popup.
+      await tick()
       expanded = false
     }
   }
