@@ -1,20 +1,18 @@
 <script>
+  import { getContext } from 'svelte'
   import { requires } from '$lib/helper-utils'
 
   export let id
 
   requires(id, 'ComboboxRow: a unique id prop is required!')
-  requires(
-    $$props['aria-selected'],
-    'ComboxboxRow: defining aria-selected as a prop is required!'
-  )
+  let activeDescendant = getContext('combobox-active-descendant')
 </script>
 
 <div
   {id}
   class="result-row"
   {...$$props}
-  aria-selected={`${$$props['aria-selected']}`}
+  aria-selected={$activeDescendant === id}
   role="row"
 >
   <slot />

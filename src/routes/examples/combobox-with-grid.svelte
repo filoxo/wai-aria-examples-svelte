@@ -90,14 +90,10 @@
   aria-labelledby="ex1-label"
   value={searchValue}
   on:filter={setSearchValue}
-  let:activeDescendant
 >
   {#if results && results.length}
     {#each results as result, index}
-      <ComboboxRow
-        id={`result-row-${index}`}
-        aria-selected={activeDescendant === `result-row-${index}`}
-      >
+      <ComboboxRow id={`result-row-${index}`}>
         <ComboboxCell id={`result-row-${index}x0`}>{result[0]}</ComboboxCell>
         <ComboboxCell id={`result-row-${index}x1`}>{result[1]}</ComboboxCell>
       </ComboboxRow>
@@ -148,6 +144,18 @@
     <li>
       This example doesn't tackle the issue of changing modality: what should
       the behavior be if the user switches from keyboard input to mouse?
+    </li>
+    <li>
+      I had initially used <a href="https://svelte.dev/tutorial/slot-props"
+        >slot props</a
+      >
+      to surface the activeDescendant to the consumer. This could have worked but
+      I learned about
+      <a href="https://svelte.dev/tutorial/context-api">svelte context</a>
+      to pass a
+      <a href="https://svelte.dev/tutorial/writable-stores">writable store</a> to
+      share the parent component state in a reactive wayt to the children (ComboboxRow)
+      components.
     </li>
   </ul>
 </section>
