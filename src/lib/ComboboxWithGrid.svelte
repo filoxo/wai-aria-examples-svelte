@@ -23,7 +23,7 @@
 
   $: gridId = `${id}-grid`
   $: inputId = `${id}-input`
-  $: expanded = focused
+  $: expanded = !(!value && gridRef?.matches(':empty'))
 
   const dispatch = createEventDispatcher()
   const onChange = (e) => dispatch('filter', e.target.value)
