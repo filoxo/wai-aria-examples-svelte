@@ -35,6 +35,11 @@
         : null
   })
 
+  async function closePopup() {
+    await tick()
+    expanded = false
+  }
+
   function handleInputKeys(e) {
     switch (e.key) {
       case KeyCode.DOWN: {
@@ -70,7 +75,7 @@
         // value = x.querySelector('[role="gridcell"]').textContent
         x.click()
         // Closes the grid popup.
-        expanded = false
+        closePopup()
         // Sets focus on the textbox.
         inputRef.focus()
         break
@@ -81,13 +86,13 @@
         // Clears the textbox.
         value = ''
         // Closes the grid popup.
-        expanded = false
+        closePopup()
         break
       }
     }
   }
 
-  async function handleGridClick(e) {
+  function handleGridClick(e) {
     let target = e.target
     if (target.matches('[role="gridcell"]'))
       target = target.closest('[role="row"]')
@@ -99,8 +104,7 @@
       // Sets focus on the textbox.
       inputRef.focus()
       // Closes the grid popup.
-      await tick()
-      expanded = false
+      closePopup()
     }
   }
 </script>
