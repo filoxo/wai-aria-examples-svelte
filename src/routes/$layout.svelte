@@ -8,6 +8,7 @@
     <a href="/examples/checkbox-two-state">Checkbox (two state)</a>
     <a href="/examples/checkbox-mixed-state">Checkbox (mixed state)</a>
     <a href="/examples/table">Table</a>
+    <a href="/examples/combobox-with-grid">Combobox with Grid Popup</a>
   </nav>
   <main>
     <slot />
