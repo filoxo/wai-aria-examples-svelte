@@ -9,6 +9,7 @@
     <a href="/examples/checkbox-mixed-state">Checkbox (mixed state)</a>
     <a href="/examples/table">Table</a>
     <a href="/examples/combobox-with-grid">Combobox with Grid Popup</a>
+    <a href="/examples/link">Link</a>
   </nav>
   <main>
     <slot />
