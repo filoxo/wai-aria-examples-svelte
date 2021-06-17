@@ -1,18 +1,18 @@
 <script>
-  import ButtonDiv from '../../lib/ButtonDiv.svelte';
-  import ButtonAnchor from '../../lib/ButtonAnchor.svelte';
+  import ButtonDiv from '../../lib/ButtonDiv.svelte'
+  import ButtonAnchor from '../../lib/ButtonAnchor.svelte'
 
-  $: isMuted = false;
+  $: isMuted = false
 
   function toggleMute() {
-    isMuted = !isMuted;
+    isMuted = !isMuted
   }
 </script>
 
 <p>
   This <q>Print</q> action button uses a <code>div</code> element.
 </p>
-<ButtonDiv id="action" on:click={(e) => window.print()}>Print</ButtonDiv>
+<ButtonDiv id="action" on:click={(e) => window.print()}>Print Page</ButtonDiv>
 
 <p>
   This <q>Mute</q> toggle button uses an <code>a</code> element.
