@@ -138,11 +138,4 @@
   [role='button'][aria-pressed]:focus::before {
     border-color: hsl(261, 71%, 49%);
   }
-
-  [role='button'] svg {
-    margin: 0.15em auto -0.15em;
-    height: 1em;
-    width: 1em;
-    pointer-events: none;
-  }
 </style>
