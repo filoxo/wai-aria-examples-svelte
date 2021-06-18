@@ -36,6 +36,7 @@
   function focusPrevFocusedElement() {
     prevFocusedElement?.focus()
   }
+  // TODO: Go back and look to see if I missed some requirements, specifically focus trapping
 </script>
 
 <svelte:window on:keydown={handleEsc} />
