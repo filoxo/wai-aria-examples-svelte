@@ -1,39 +1,40 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import { focusFirstDescendant } from '../lib/focus-utils';
+  import { onMount, onDestroy } from 'svelte'
+  import { focusFirstDescendant } from '$lib/focus-utils'
+  import { KeyCode } from '$lib/keyboard-utils'
 
-  export let id;
-  export let labelledby;
-  export let describedby;
+  export let id
+  export let labelledby
+  export let describedby
   export let onEsc = () => {
     /* noop */
-  };
+  }
 
-  if (!id) throw new Error('Alert: id is required!');
+  if (!id) throw new Error('Alert: id is required!')
 
-  let content;
-  let prevFocusedElement;
+  let content
+  let prevFocusedElement
 
   onMount(() => {
-    document.body.classList.add('has-dialog');
-    prevFocusedElement = document.activeElement;
-    focusFirstDescendant(content);
-  });
+    document.body.classList.add('has-dialog')
+    prevFocusedElement = document.activeElement
+    focusFirstDescendant(content)
+  })
 
   onDestroy(() => {
-    document.body.classList.remove('has-dialog');
-    focusPrevFocusedElement();
-  });
+    document.body.classList.remove('has-dialog')
+    focusPrevFocusedElement()
+  })
 
   function handleEsc(e) {
-    if (e.key === 'Escape') {
-      e.stopPropagation();
-      onEsc(e);
+    if (e.key === KeyCode.ESC) {
+      e.stopPropagation()
+      onEsc(e)
     }
   }
 
   function focusPrevFocusedElement() {
-    prevFocusedElement?.focus();
+    prevFocusedElement?.focus()
   }
 </script>
 
