@@ -1,15 +1,12 @@
 <script>
   import { ariaReflectionSupport } from './browserSupport'
   import ButtonIdlDiv from '$lib/ButtonIdlDiv.svelte'
+  import ButtonIdlAnchor from '$lib/ButtonIdlAnchor.svelte'
   import AlertDialog from '$lib/AlertDialog.svelte'
 
   let alertIsDismissed = false
 
-  $: isMuted = false
-
-  function toggleMute() {
-    isMuted = !isMuted
-  }
+  let isMuted = false
 
   let hasAriaReflectionSupport
 
@@ -19,6 +16,12 @@
 
   function dismissAlert() {
     alertIsDismissed = true
+  }
+
+  function toggleButtonState({ detail: button }) {
+    if (button.ariaPressed === 'false') isMuted = true
+    if (button.ariaPressed === 'true') isMuted = false
+    button.ariaPressed = isMuted.toString()
   }
 </script>
 
@@ -47,6 +50,15 @@
 <p>
   This <q>Mute</q> toggle button uses an <code>a</code> element.
 </p>
+
+<ButtonIdlAnchor id="toggle" on:click={toggleButtonState}>
+  Mute
+  <svg>
+    <use
+      xlink:href={`/images/mute.svg${isMuted ? '#icon-mute' : '#icon-sound'}`}
+    />
+  </svg>
+</ButtonIdlAnchor>
 
 {#if !alertIsDismissed && !hasAriaReflectionSupport}
   <AlertDialog
@@ -88,6 +100,23 @@
       >, a repo that contains a test suite and harness for assessing assistive
       technology (AT) support of ARIA. Seems very useful so I'll be learning
       more about this effort.
+    </li>
+    <li>
+      Reflected properties aren't there yet, but I believe you could achieve the
+      same with the <a
+        href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver"
+        >MutationObserver API</a
+      >
+    </li>
+    <!-- <li>
+      An interesting conundrum ocurred to me while working on this: given that
+      the DOM attribute needs to be the source of truth, should the component
+      allow an initial value? What if that attribute changes
+    </li> -->
+    <li>
+      The original example used a callout to denote that the example requires
+      certain browser APIs. I instead reused the AlertDialog component from the
+      other example instead if users' browser doesn't support the required APIs.
     </li>
   </ul>
 </section>
