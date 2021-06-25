@@ -17,24 +17,26 @@
     display: table;
   }
 
-  :global([role='table'] [role='row']) {
+  [role='table'] :global([role='row']) {
     display: table-row;
   }
 
-  :global([role='table'] [role='cell'], [role='table'] [role='columnheader']) {
+  [role='table'] :global([role='cell']),
+  [role='table'] :global([role='columnheader']) {
     display: table-cell;
     padding: 0.125em 0.25em;
     width: 8em;
   }
 
-  :global([role='table'] [role='columnheader']) {
+  [role='table'] :global([role='columnheader']) {
     font-weight: bold;
     border-bottom: thin solid #888;
   }
 
-  :global([role='table']
-      [role='rowgroup']:last-child
-      [role='row']:nth-child(odd)) {
+  [role='table']
+    :global
+    [role='rowgroup']:last-child
+    [role='row']:nth-child(odd) {
     background-color: #ddd;
   }
 </style>
