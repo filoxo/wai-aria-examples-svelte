@@ -12,8 +12,8 @@ export const KeyCode = Object.freeze({
   LEFT: 'ArrowLeft',
 })
 
-export const handleKeyboardClick = (fn) => {
-  return (e) => {
+export const handleKeyboardClick = (fn: Function) => {
+  return (e: KeyboardEvent) => {
     switch (e.key) {
       case KeyCode.SPACE:
         return handleSpaceAsClick(fn)(e)
@@ -23,13 +23,13 @@ export const handleKeyboardClick = (fn) => {
   }
 }
 
-export const handleEnterAsClick = (fn) => (e) => {
+export const handleEnterAsClick = (fn: Function) => (e: KeyboardEvent) => {
   if (e.key === KeyCode.ENTER) {
     return fn(e)
   }
 }
 
-export const handleSpaceAsClick = (fn) => (e) => {
+export const handleSpaceAsClick = (fn: Function) => (e: KeyboardEvent) => {
   if (e.key === KeyCode.SPACE) {
     // to prevent page scrolling on Space
     e.preventDefault()

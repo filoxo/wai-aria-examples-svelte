@@ -1,7 +1,9 @@
 const FOCUSABLES_SELECTOR =
   'a, button, input, textarea, select, details, [tabindex]'
 
-export function isFocusable(element) {
+type HTMLFocusableElement = Partial<HTMLButtonElement & HTMLAnchorElement & HTMLInputElement>
+
+export function isFocusable(element: HTMLFocusableElement): boolean {
   if (!element || element.tabIndex < 0 || element.disabled) return false
 
   switch (element.nodeName) {
@@ -19,50 +21,50 @@ export function isFocusable(element) {
   }
 }
 
-export function attemptFocus(element) {
+export function attemptFocus(element: HTMLElement) {
   if (!isFocusable(element)) return false
 
   try {
     element.focus()
-  } catch (e) {}
+  } catch (e) { }
 
   return document.activeElement === element
 }
 
-export function focusFirstDescendant(element) {
+export function focusFirstDescendant(element: HTMLFocusableElement) {
   for (var i = 0; i < element.childNodes.length; i++) {
     var child = element.childNodes[i]
-    if (attemptFocus(child) || focusFirstDescendant(child)) {
+    if (attemptFocus(child as HTMLElement) || focusFirstDescendant(child)) {
       return true
     }
   }
   return false
 }
 
-export function focusLastDescendant(element) {
+export function focusLastDescendant(element: HTMLFocusableElement) {
   for (var i = element.childNodes.length - 1; i >= 0; i--) {
     var child = element.childNodes[i]
-    if (attemptFocus(child) || focusLastDescendant(child)) {
+    if (attemptFocus(child as HTMLElement) || focusLastDescendant(child)) {
       return true
     }
   }
   return false
 }
 
-function queryForFocusableElements(element = document.body) {
+function queryForFocusableElements(element: HTMLElement = document.body) {
   return [...element.querySelectorAll(FOCUSABLES_SELECTOR)].filter(isFocusable)
 }
 
-export function previousFocusableElement(elem) {
+export function previousFocusableElement(elem: HTMLElement) {
   return siblingFocusableElement(elem, 'previousElementSibling')
 }
 
-export function nextFocusableElement(elem) {
+export function nextFocusableElement(elem: HTMLElement) {
   return siblingFocusableElement(elem, 'nextElementSibling')
 }
 
 // TODO: should this handle passing in document.body?
-function siblingFocusableElement(elem, recurseKey) {
+function siblingFocusableElement(elem: HTMLElement, recurseKey: string) {
   // Escape early if element is null or the parentElement is body
   if (!elem || elem.parentElement === document.body) return null
   // If an elementSibling exists...
@@ -79,9 +81,9 @@ function siblingFocusableElement(elem, recurseKey) {
       // and if there are any results
       return siblingFocusableElements.length
         ? // return the first one
-          siblingFocusableElements.pop()
+        siblingFocusableElements.pop()
         : // otherwise, rescurse directionally in the dom
-          siblingFocusableElement(elem, recurseKey)
+        siblingFocusableElement(elem, recurseKey)
     }
   }
   // otherwise move up to the parent's element sibling
@@ -90,24 +92,24 @@ function siblingFocusableElement(elem, recurseKey) {
   }
 }
 
-export function focusPreviousElement(elem = document.activeElement) {
+export function focusPreviousElement(elem: HTMLElement = <HTMLElement>document.activeElement) {
   const prevElem = previousFocusableElement(elem)
   attemptFocus(prevElem)
 }
 
-export function focusNextElement(elem = document.activeElement) {
+export function focusNextElement(elem: HTMLElement = <HTMLElement>document.activeElement) {
   const nextElem = nextFocusableElement(elem)
   attemptFocus(nextElem)
 }
 
-export function focusSibling(element, recurseKey) {
+export function focusSibling(element, recurseKey): void {
   const sibling = element[recurseKey]
   if (!sibling) {
     return
   } else if (isFocusable(sibling)) {
     attemptFocus(sibling)
   } else {
-    return focusSibling(sibling[recurseKey])
+    return focusSibling(sibling, recurseKey)
   }
 }
 
