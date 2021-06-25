@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   import { handleSpaceAsClick } from './keyboard-utils'
 
-  export let checked = false
+  export let checked: boolean = false
 
   function toggleCheckbox() {
     checked = !checked

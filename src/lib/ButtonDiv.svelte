@@ -1,11 +1,11 @@
-<script>
-  import { createEventDispatcher } from 'svelte';
-  import { handleKeyboardClick } from './keyboard-utils';
+<script lang="ts">
+  import { createEventDispatcher } from 'svelte'
+  import { handleKeyboardClick } from './keyboard-utils'
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  function onClick(e) {
-    dispatch('click');
+  function onClick(_e: MouseEvent) {
+    dispatch('click')
   }
 </script>
 

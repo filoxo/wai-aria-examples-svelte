@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { requires } from '$lib/helper-utils'
   requires($$props['aria-posinset'], 'Article: aria-posinset is required!')
   requires($$props['aria-setsize'], 'Article: aria-setsize is required!')

@@ -1,7 +1,7 @@
-<script>
-  export let id;
+<script lang="ts">
+  export let id: string
 
-  if (!id) throw new Error('Alert: id is required!');
+  if (!id) throw new Error('Alert: id is required!')
 </script>
 
 <div {id} role="alert">

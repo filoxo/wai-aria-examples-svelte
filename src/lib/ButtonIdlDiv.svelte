@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte'
   import { ariaReflectionSupport } from '../routes/examples/button-idl/browserSupport'
   import { handleKeyboardClick, handleSpaceAsClick } from './keyboard-utils'
@@ -7,7 +7,7 @@
 
   let buttonElem
 
-  const activateActionButton = (e) => dispatch('click')
+  const activateActionButton = (_e: MouseEvent) => dispatch('click')
   const actionButtonKeydownHandler = handleKeyboardClick(activateActionButton)
   const actionButtonKeyupHandler = handleSpaceAsClick(activateActionButton)
 

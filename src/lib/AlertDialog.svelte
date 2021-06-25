@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
   import { onMount, onDestroy } from 'svelte'
   import { focusFirstDescendant } from '$lib/focus-utils'
   import { KeyCode } from '$lib/keyboard-utils'
 
-  export let id
-  export let labelledby
-  export let describedby
-  export let onEsc = () => {
+  export let id: string
+  export let labelledby: string
+  export let describedby: string
+  export let onEsc = (_e: KeyboardEvent) => {
     /* noop */
   }
 

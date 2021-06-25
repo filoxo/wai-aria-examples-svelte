@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte'
   import { ariaReflectionSupport } from '../routes/examples/button-idl/browserSupport'
   import { handleKeyboardClick, handleSpaceAsClick } from './keyboard-utils'
 
   const dispatch = createEventDispatcher()
 
-  let anchorElem
+  let anchorElem: HTMLDivElement
 
   const dispatchClick = ({ currentTarget }) => dispatch('click', currentTarget)
 
@@ -22,8 +22,9 @@
   const toggleButtonKeyupHandler = handleSpaceAsClick(dispatchClick)
 
   onMount(() => {
-    anchorElem.role = 'button'
-    anchorElem.ariaPressed = 'false'
+    // cast to any since spec has not yet been finalized or implemented
+    ;(anchorElem as any).role = 'button'
+    ;(anchorElem as any).ariaPressed = 'false'
 
     // Report if browser did not apply role through attribute reflection
     if (

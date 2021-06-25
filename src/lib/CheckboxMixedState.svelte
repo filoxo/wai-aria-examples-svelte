@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from 'svelte'
   import { handleSpaceAsClick } from './keyboard-utils'
+  type ObjectWithBooleanValues = { [key: string]: boolean }
 
-  export let values = {}
+  export let values: ObjectWithBooleanValues = {}
 
   if (!Object.keys(values).length)
     throw new Error(
@@ -15,20 +16,23 @@
 
   const originalValues = { ...values }
   const eventDispatcher = createEventDispatcher()
-  const dispatch = (detail) => eventDispatcher('check', detail)
+  const dispatch = (detail: ObjectWithBooleanValues) =>
+    eventDispatcher('check', detail)
+
+  let checked: svelte.JSX.AriaAttributes['aria-checked']
 
   $: valuesRaw = Object.values(values)
   $: allTrue = valuesRaw.every(Boolean)
   $: allFalse = !valuesRaw.some(Boolean)
   $: checked = allTrue ? 'true' : allFalse ? 'false' : 'mixed'
 
-  function setCheckValuesTo(newVal) {
+  function setCheckValuesTo(newVal: boolean) {
     const valuesCopy = { ...values }
     Object.keys(valuesCopy).forEach((v) => (valuesCopy[v] = newVal))
     return valuesCopy
   }
 
-  function handleClick(e) {
+  function handleClick(_e) {
     switch (checked) {
       case 'true': {
         dispatch(setCheckValuesTo(false))

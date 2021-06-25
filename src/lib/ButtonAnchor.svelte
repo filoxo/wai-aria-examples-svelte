@@ -1,14 +1,14 @@
-<script>
-  import { createEventDispatcher } from 'svelte';
-  import { handleKeyboardClick } from './keyboard-utils';
+<script lang="ts">
+  import { createEventDispatcher } from 'svelte'
+  import { handleKeyboardClick } from './keyboard-utils'
 
   if ($$props['aria-pressed'] === undefined || $$props['aria-pressed'] === null)
-    throw new Error('ButtonAnchor: aria-pressed is required!');
+    throw new Error('ButtonAnchor: aria-pressed is required!')
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  function onClick(e) {
-    dispatch('click');
+  function onClick(_e: MouseEvent) {
+    dispatch('click')
   }
 </script>
 
