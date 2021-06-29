@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
   import { requires, prevIndex, nextIndex } from '$lib/helper-utils'
   import { KeyCode } from '$lib/keyboard-utils'
   import { afterUpdate, createEventDispatcher, setContext, tick } from 'svelte'
   import { writable } from 'svelte/store'
 
-  export let id
-  export let value
+  export let id: string
+  export let value: any
 
   requires(id, 'ComboboxWithGrid: requires a unique id prop!')
   requires(
@@ -14,8 +14,8 @@
   )
   requires(value, 'ComboboxWithGrid: requires a value prop!')
 
-  let inputRef
-  let gridRef
+  let inputRef: HTMLInputElement
+  let gridRef: HTMLDivElement
   let gridItems = null
   let activeDescendant = writable(null)
 

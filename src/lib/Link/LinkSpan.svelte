@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
   import { requires } from '../helper-utils'
   import { goToLink } from './goToLink'
 
-  export let href
+  export let href: string
 
   requires(href, 'LinkSpan: an href prop is required!')
 

@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   import { requires } from '../helper-utils'
   import { goToLink } from './goToLink'
 
-  export let href
-  export let label
+  export let href: string
+  export let label: string
 
   requires(href, 'LinkSpanBefore: an href prop is required!')
   requires(label, 'LinkSpanBefore: a label prop is required!')

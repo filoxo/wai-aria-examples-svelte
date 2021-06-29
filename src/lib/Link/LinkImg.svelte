@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import { requires } from '../helper-utils'
   import { goToLink } from './goToLink'
 
-  export let src
-  export let href
-  export let alt
+  export let src: string
+  export let href: string
+  export let alt: string
 
   requires(src, 'LinkImg: a src prop is required!')
   requires(href, 'LinkImg: an href prop is required!')

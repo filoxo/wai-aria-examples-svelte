@@ -1,8 +1,8 @@
-<script>
-  import { fly } from 'svelte/transition';
+<script lang="ts">
+  import { fly } from 'svelte/transition'
 
-  export let id;
-  if (!id) throw new Error('Toast: requires an id!');
+  export let id: string
+  if (!id) throw new Error('Toast: requires an id!')
 </script>
 
 <div

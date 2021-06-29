@@ -12,7 +12,7 @@ export const KeyCode = Object.freeze({
   LEFT: 'ArrowLeft',
 })
 
-export const handleKeyboardClick = (fn: Function) => {
+export const handleKeyboardClick = (fn: Function): svelte.JSX.MouseEventHandler => {
   return (e: KeyboardEvent) => {
     switch (e.key) {
       case KeyCode.SPACE:
@@ -23,13 +23,13 @@ export const handleKeyboardClick = (fn: Function) => {
   }
 }
 
-export const handleEnterAsClick = (fn: Function) => (e: KeyboardEvent) => {
+export const handleEnterAsClick = (fn: Function): svelte.JSX.KeybaordEventHandler => (e: KeyboardEvent) => {
   if (e.key === KeyCode.ENTER) {
     return fn(e)
   }
 }
 
-export const handleSpaceAsClick = (fn: Function) => (e: KeyboardEvent) => {
+export const handleSpaceAsClick = (fn: Function): svelte.JSX.KeybaordEventHandler => (e: KeyboardEvent) => {
   if (e.key === KeyCode.SPACE) {
     // to prevent page scrolling on Space
     e.preventDefault()

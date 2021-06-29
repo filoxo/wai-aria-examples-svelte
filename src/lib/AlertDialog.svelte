@@ -12,12 +12,12 @@
 
   if (!id) throw new Error('Alert: id is required!')
 
-  let content
-  let prevFocusedElement
+  let content: HTMLDivElement
+  let prevFocusedElement: HTMLElement
 
   onMount(() => {
     document.body.classList.add('has-dialog')
-    prevFocusedElement = document.activeElement
+    prevFocusedElement = document.activeElement as HTMLElement
     focusFirstDescendant(content)
   })
 

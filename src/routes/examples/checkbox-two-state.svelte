@@ -1,5 +1,5 @@
 <script>
-  import CheckboxTwoState from '../../lib/CheckboxTwoState.svelte'
+  import CheckboxTwoState from '$lib/CheckboxTwoState.svelte'
 </script>
 
 <h3 id="id-group-label">Sandwich Condiments</h3>

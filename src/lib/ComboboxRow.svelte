@@ -1,11 +1,13 @@
-<script>
+<script lang="ts">
   import { getContext } from 'svelte'
   import { requires } from '$lib/helper-utils'
 
-  export let id
+  export let id: string
 
   requires(id, 'ComboboxRow: a unique id prop is required!')
-  let activeDescendant = getContext('combobox-active-descendant')
+  let activeDescendant: SvelteStore<string> = getContext(
+    'combobox-active-descendant'
+  )
 </script>
 
 <div

@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   import { requires } from '$lib/helper-utils'
 
-  export let id
+  export let id: string
 
   requires(
     id,

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from 'svelte'
   import { requires } from './helper-utils'
   import { KeyCode } from './keyboard-utils'
@@ -8,11 +8,11 @@
     focusPreviousElement,
     focusNextElement,
   } from './focus-utils'
-  export let id
+  export let id: string
 
   requires(id, 'Feed: id is required!')
 
-  let feed
+  let feed: HTMLDivElement
 
   const dispatch = createEventDispatcher()
 
