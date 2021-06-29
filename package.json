@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
-    "start": "svelte-kit start"
+    "start": "svelte-kit start",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
     "@sveltejs/adapter-netlify": "^1.0.0-next.17",
@@ -21,6 +23,6 @@
   },
   "type": "module",
   "engines": {
-    "node": ">= 12.17.0"
+    "node": ">= 14.15.0"
   }
 }
